@@ -1,0 +1,5 @@
+from nltk.corpus import wordnet
+synsets = wordnet.synsets("play")
+for synset in synsets:
+    print(f"Meaning: {synset.definition()}")
+    print(f"Example: {synset.examples()}\n")

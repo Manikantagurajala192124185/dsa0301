@@ -1,0 +1,7 @@
+from nltk.wsd import lesk
+from nltk.tokenize import word_tokenize
+sentence = "I went to the bank to deposit money."
+tokens = word_tokenize(sentence)
+sense = lesk(tokens, "bank")
+print(f"Sense: {sense.name()}")
+print(f"Definition: {sense.definition()}")

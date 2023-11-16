@@ -1,0 +1,11 @@
+from pyparsing import Word, alphas, infixNotation, opAssoc
+and_op = "and"
+or_op = "or"
+not_op = "not"
+variable = Word(alphas)
+expr = infixNotation(variable,
+                    [(not_op, 1, opAssoc.RIGHT),
+                     (and_op, 2, opAssoc.LEFT),
+                     (or_op, 2, opAssoc.LEFT)])
+result = expr.parseString("A and B or not C")
+print(result[0])
