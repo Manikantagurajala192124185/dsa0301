@@ -1,0 +1,25 @@
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import wordnet
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+text = "The quick brown foxes are jumping over the lazy dogs."
+words = word_tokenize(text)
+pos_tags = nltk.pos_tag(words)
+lemmatizer = WordNetLemmatizer()
+def get_wordnet_pos(tag):
+    tag = tag[0].upper()
+    tag = tag if tag in 'ANVR' else None
+    return tag
+lemmatized_words = []
+for word, pos in pos_tags:
+    wordnet_tag = get_wordnet_pos(pos)
+    if wordnet_tag:
+        lemmatized_word = lemmatizer.lemmatize(word, wordnet_tag)
+        lemmatized_words.append(lemmatized_word)
+    else:
+        lemmatized_words.append(word)
+print("Original words:", words)
+print("Lemmatized words:", lemmatized_words)
